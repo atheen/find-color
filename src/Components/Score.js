@@ -1,9 +1,14 @@
 import React from 'react';
 
-import SingleplayerScore from './SingleplayerScore';
-
 const Score = ({score, failedClicks}) => {
-  return <SingleplayerScore score={score} failedClicks={failedClicks}/>
+  return (
+    <div className='mt-3'>
+      <div>
+        <h2 className='text-success'>{score}</h2>
+        <h3 className='text-danger'>{failedClicks}</h3>
+      </div>
+    </div>
+  )
 }
 
 export default Score;

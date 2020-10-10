@@ -1,6 +1,8 @@
 import React,{useState} from 'react';
 import './App.css';
 
+import Particles from "react-tsparticles";
+
 //Components
 import Home from './Components/Home.js';
 import Game from './Components/Game.js';
@@ -9,7 +11,7 @@ function App() {
   const [difficulty, setDifficulty] = useState(null);
 
   const page = () => {
-    if (difficulty) return <Game difficulty={difficulty} />;
+    if (difficulty) return <Game difficulty={difficulty} setDifficulty={setDifficulty} />;
     return <Home setDifficulty={setDifficulty} />;
   };
 
@@ -17,15 +19,11 @@ function App() {
     <div className = 'App my-5'>
     <div className = 'jumbotron'>
       {page()}
+
       <div className = 'row'>
-          <button
-            className='btn btn-danger btn-block mb-3'
-            onClick={() => {
-              setDifficulty(null);
-            }}>
-            Reset
-          </button>{" "}
+        
         </div>
+
       </div>
     </div>
   );
