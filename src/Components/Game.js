@@ -10,6 +10,8 @@ import {shuffle} from '../utils.js';
 import Color from './Color.js';
 import Score from './Score.js';
 
+import Confetti from 'react-confetti';
+
 const Game = ({difficulty}) => {
   const [colors, setColors] = useState([]);
   const [score, setScore] = useState(0);
@@ -17,13 +19,13 @@ const Game = ({difficulty}) => {
   useEffect(() => {
     switch (difficulty) {
       case 'easy':
-        setColors(() => shuffle([...darkBlues, ...darkBlues, ...lightBlues]));
+        setColors(() => shuffle([...darkBlues, ...darkBlues, darkBlues[0], ...lightBlues]));
         break;
       case 'medium':
-        setColors(() => shuffle([...darkBlues, ...darkBlues, ...darkBlues, ...lightBlues]));
+        setColors(() => shuffle([...darkBlues, ...darkBlues, ...darkBlues, ...darkBlues, darkBlues[0], darkBlues[0], darkBlues[0], ...lightBlues]));
         break;
       case 'hard':
-        setColors(() => shuffle([...darkBlues, ...darkBlues, ...darkBlues, ...darkBlues, ...lightBlues]));
+        setColors(() => shuffle([...darkBlues, ...darkBlues, ...darkBlues, ...darkBlues, darkBlues[0], darkBlues[0], darkBlues[0], ...lightBlues]));
         break;
       default:
         break;
@@ -46,9 +48,6 @@ const Game = ({difficulty}) => {
       if (clickedCards[0].id !== clickedCards[1].id) {
         increaseFailed(failedClicks+1);
       }else{
-        if (score === 9){
-          console.log("you got a 10!!")
-        }
         setScore(score + 1);
       }
       changeClicked([]);
@@ -61,15 +60,17 @@ const Game = ({difficulty}) => {
 
   return (
     <div className='container'>
+    <div className='jumbotron'>
       <div className='row'>
-        <div className='col-9'>
-          <div className='row border'>{colorsList}</div>
-        </div>
         <Score
           score={score}
           failedClicks={failedClicks}
         />
+        <div className='row'>{colorsList}</div>
+        {score === 10 ? <Confetti width='5000px' height='5000px'/>:<p></p>}
+        {score === 11 ? setScore(0):<p></p>}
       </div>
+    </div>
     </div>
   )
 }

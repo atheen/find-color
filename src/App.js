@@ -14,12 +14,12 @@ function App() {
   };
 
   return (
-    <div className = 'App border my-5'>
+    <div className = 'App my-5'>
+    <div className = 'jumbotron'>
       {page()}
       <div className = 'row'>
-        <div className = 'col-3'>
           <button
-            className='btn btn-danger mb-3'
+            className='btn btn-danger btn-block mb-3'
             onClick={() => {
               setDifficulty(null);
             }}>

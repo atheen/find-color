@@ -5,7 +5,6 @@ const Color = ({color, checkClicked, odd}) => {
   const [clicked, changeClicked] = useState(false);
 
   const handleClick = () => {
-    console.log(odd)
     if (clicked !== true) {
       changeClicked(true);
       checkClicked({id:color.id, changeClicked:changeClicked});

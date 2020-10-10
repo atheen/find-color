@@ -109,4 +109,20 @@ export const darkBlues = [
     id: 26,
     color: DarkBlue
   },
+  {
+    id: 27,
+    color: DarkBlue
+  },
+  {
+    id: 28,
+    color: DarkBlue
+  },
+  {
+    id: 29,
+    color: DarkBlue
+  },
+  {
+    id: 30,
+    color: DarkBlue
+  },
 ];
