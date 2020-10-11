@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 
-const Color = ({color, checkClicked, odd}) => {
+const Color = ({color, checkClicked}) => {
   const [clicked, changeClicked] = useState(false);
 
   const handleClick = () => {

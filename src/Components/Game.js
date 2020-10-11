@@ -20,6 +20,8 @@ const Game = ({difficulty, setDifficulty}) => {
   const [score, setScore] = useState(0);
   const [backColor, setBackColor] = useState('#222222')
   const [darkLight,setDarkLight] = useState([darkBlues,lightBlues]);
+  const [failedClicks, increaseFailed] = useState(0);
+
   let dark = darkLight[0]
   let light = darkLight[1]
 
@@ -31,12 +33,10 @@ const Game = ({difficulty, setDifficulty}) => {
         break;
       case 'medium':
         setColors(() => shuffle([...dark, ...dark, ...dark, ...dark, dark[0], dark[0], dark[0], ...light]));
-        setBackColor('yellow')
         setBackColor('#FFE338')
         break;
       case 'hard':
         setColors(() => shuffle([...dark, ...dark, ...dark, ...dark, dark[0], dark[0], dark[0], ...light]));
-        setBackColor('red')
         setBackColor('#FF0000')
         break;
       default:
@@ -44,9 +44,6 @@ const Game = ({difficulty, setDifficulty}) => {
     }
   }, [difficulty,score]);
 
-
-
-  const [failedClicks, increaseFailed] = useState(0);
 
   let clickedCards = [lightBlues[0]];
   const changeClicked = anArray => {
@@ -62,7 +59,7 @@ const Game = ({difficulty, setDifficulty}) => {
         if (failedClicks === 4){
           setTimeout(() => {
             setDifficulty(null);
-          }, 1000);
+          }, 2000);
         }
       }else{
         setScore(score + 1);
@@ -76,7 +73,6 @@ const Game = ({difficulty, setDifficulty}) => {
           setDarkLight([darkGreens,lightGreens])
         }
         else if (darkLight[0]===darkGreens){
-          setDarkLight([darkBlues,lightBlues])
           setTimeout(() => {
             setDifficulty(null);
           }, 7000);
@@ -85,7 +81,6 @@ const Game = ({difficulty, setDifficulty}) => {
       changeClicked([]);
     }
   }
-
 
 
   const colorsList = colors.map((color,idx) => (

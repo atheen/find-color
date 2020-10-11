@@ -1,8 +1,6 @@
 import React,{useState} from 'react';
 import './App.css';
 
-import Particles from "react-tsparticles";
-
 //Components
 import Home from './Components/Home.js';
 import Game from './Components/Game.js';
@@ -21,7 +19,7 @@ function App() {
       {page()}
 
       <div className = 'row'>
-        
+
         </div>
 
       </div>
