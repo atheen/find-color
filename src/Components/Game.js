@@ -18,6 +18,7 @@ import Confetti from 'react-confetti';
 const Game = ({difficulty, setDifficulty}) => {
   const [colors, setColors] = useState([]);
   const [score, setScore] = useState(0);
+  const [backColor, setBackColor] = useState('#222222')
   const [darkLight,setDarkLight] = useState([darkBlues,lightBlues]);
   let dark = darkLight[0]
   let light = darkLight[1]
@@ -26,12 +27,17 @@ const Game = ({difficulty, setDifficulty}) => {
     switch (difficulty) {
       case 'easy':
         setColors(() => shuffle([...dark, ...dark, dark[0], ...light]));
+        setBackColor('#77DD77')
         break;
       case 'medium':
         setColors(() => shuffle([...dark, ...dark, ...dark, ...dark, dark[0], dark[0], dark[0], ...light]));
+        setBackColor('yellow')
+        setBackColor('#FFE338')
         break;
       case 'hard':
         setColors(() => shuffle([...dark, ...dark, ...dark, ...dark, dark[0], dark[0], dark[0], ...light]));
+        setBackColor('red')
+        setBackColor('#FF0000')
         break;
       default:
         break;
@@ -80,6 +86,8 @@ const Game = ({difficulty, setDifficulty}) => {
     }
   }
 
+
+
   const colorsList = colors.map((color,idx) => (
     <Color key={`${color.id}-${idx}`} color={color} checkClicked={checkClicked} odd={darkLight[0].color} />
   ))
@@ -91,6 +99,87 @@ const Game = ({difficulty, setDifficulty}) => {
       {failedClicks === 5 ? <h1 className='text-danger display-4'>YOU LOST</h1>:<p></p>}
       {score === 4 ? <Confetti width='5000px' height='5000px'/>:<p></p>}
       {score === 4 ? <h1 className='text-success display-4'>YOU WON!!</h1>:<p></p>}
+      <Particles
+          id="tsparticles"
+          options={{
+            background: {
+              color: {
+                value: "#222222",
+              },
+            },
+            fpsLimit: 60,
+            interactivity: {
+              detectsOn: "canvas",
+              events: {
+                onClick: {
+                  enable: true,
+                  mode: "push",
+                },
+                onHover: {
+                  enable: true,
+                  mode: "repulse",
+                },
+                resize: true,
+              },
+              modes: {
+                bubble: {
+                  distance: 400,
+                  duration: 2,
+                  opacity: 0.8,
+                  size: 40,
+                },
+                push: {
+                  quantity: 4,
+                },
+                repulse: {
+                  distance: 200,
+                  duration: 0.4,
+                },
+              },
+            },
+            particles: {
+              color: {
+                value: backColor,
+              },
+              links: {
+                color: backColor,
+                distance: 150,
+                enable: true,
+                opacity: 0.5,
+                width: 1,
+              },
+              collisions: {
+                enable: true,
+              },
+              move: {
+                direction: "none",
+                enable: true,
+                outMode: "bounce",
+                random: false,
+                speed: 6,
+                straight: false,
+              },
+              number: {
+                density: {
+                  enable: true,
+                  value_area: 800,
+                },
+                value: 80,
+              },
+              opacity: {
+                value: 0.5,
+              },
+              shape: {
+                type: "circle",
+              },
+              size: {
+                random: true,
+                value: 2,
+              },
+            },
+            detectRetina: true,
+          }}
+        />
         <Score
           score={score}
           failedClicks={failedClicks}
@@ -138,10 +227,10 @@ const Game = ({difficulty, setDifficulty}) => {
             },
             particles: {
               color: {
-                value: "#ffffff",
+                value: backColor,
               },
               links: {
-                color: "#ffffff",
+                color: backColor,
                 distance: 150,
                 enable: true,
                 opacity: 0.5,
